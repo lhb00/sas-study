@@ -155,3 +155,65 @@ parkseri  283746937
 kimmihyun 938726987
 ; run; proc print; run;
 /* 3가지 방법 혼용 가능*/
+data ip4;
+input @12 name $10. #2 id 3-4;
+cards;
+           kimsungill
+  12
+           parkseri
+  24
+           kimmihyun
+  36
+;
+/* #: 하나의 단위에서 줄 바꿈을 하여 생성할 시에 이용하는 기호*/
+run;
+proc print;
+run;
+data ip5;
+/* #을 이용해서 줄을 이동할 때 2->3번째 처럼 꼭 순차적으로 갈 필요가 없다*/
+/* #3를 넣건 빼건 똑같이 작동한다. 그럼 넣은 이유는? 구버전에서는 3번째 줄로 이동하지 않고 2번째 줄에서 끝내면, 3번째 줄부터 데이터를 읽어버린다. 그래서 넣은 것이고, 현재 버전에서는 빼도 되긴한다. 하지만 넣는게 낫다.*/
+input @31 age 3. #3 id 3-4 #2 @6 name $10. #3;
+cards;
+399658788399658788399658788399658788
+     kimsungill
+  12
+283746837283746837283746837283746837
+     parkseri
+  24
+938726987938726987938726987938726987
+     kimmihyun
+  36
+;run;proc print;run;
+data ip6;
+input name$ age @@; /*@@를 빼버리면 lee에서 바로 jun으로 넘어간다. 즉, @@의 의미는 한 줄에 여러 가지 케이스가 연속으로 이어진다는 것을 알려주는 의미다.*/
+cards;
+lee 33 park 22 kim 25
+jun 16 seo 22 yoon 17
+;
+run;
+proc print;
+run;
+data ip7;
+/* 단독으로 있는 @의 의미: 일시정지*/
+input status $ 1 @;
+		if status="p" then input course $ profname $ 12-32;
+else if status="s" then input course $ id name $ 19-39;
+cards;
+p stat1111 S.G.LEE
+s stat1111 952210 Honggildong
+;
+/* list input으로 하면 최대 8글자까지만 입력이 가능하기 때문에 홍길동의 이름이 잘려서 나온다. 따라서 무조건 column input으로 해줘야 한다.*/
+run;
+proc print;
+run;
+data ip8;
+input name $1-10 +5 pulse 3.;
+cards;
+kimsungill399658788
+parkseri 283746837
+kimmihyun 938726987
+;
+run;
+/* +숫자=> reading point를 숫자만큼 뒤로 옮겨준다. '-'는 안된다.*/
+proc print;run;
+
