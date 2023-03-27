@@ -189,3 +189,41 @@ run;
 proc print data=date4;
 format exam result worddate17.;
 run;
+/* 연습문제 3 */
+/* (1) 주거 데이터로 데이터 셋 생성 */
+/* 1) 거주형태, 편의도, 만족도만 포함된 데이터 */
+data residence;
+input sex $1-2 type $3-6 convienience 8-12 .1 safety 13-16 .1 freedom 17-21 .1 satisfaction 22-25 .1;
+cards;
+F 아파트  9.1 9.0 8.7 9.0
+F 아파트  8.5 8.8 8.0 8.5
+M 아파트 9.2 8.7 8.3 8.6
+F 아파트  8.3 8.9 8.4 8.4
+M 아파트 7.2 8.4 8.2 8.0
+M 아파트 8.5 7.9 7.2 7.8
+M 아파트 8.7 8.7 8.0 8.4
+M 아파트 8.4 8.3 7.5 8.0
+M 단독주택 8.3 7.2 8.8 8.0
+F 단독주택 8.5 6.8 8.3 7.3
+F 단독주택 7.2 7.9 8.7 7.9
+F 단독주택 8.1 8.3 8.5 8.2
+M 단독주택 7.8 8.4 9.1 8.3
+M 단독주택 8.8 7.6 8.2 8.2
+F 연립주택 7.2 8.2 8.1 7.7
+M 연립주택 7.4 8.0 7.9 7.5
+F 연립주택 7.8 7.8 7.8 7.8
+M 연립주택 8.1 8.6 8.4 8.5
+M 연립주택 8.3 8.1 7.6 8.0
+;
+data residence1;
+set residence ( KEEP = type convienience freedom satisfaction);
+run;
+proc print; run;
+/* 2) 편의도 8.5 이상으로 구성된 데이터 */
+data residence2;
+set residence;
+if convienience>=8.5;
+run;
+proc print; run;
+/* 3) 아파트와 연립주택 포함하는 데이터와 단톡주택만의 데이터 */
+/* (2) 주거 데이터를 text file로 생성 후 sas 데이터 셋으로 읽어 오기*/
