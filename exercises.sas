@@ -178,7 +178,7 @@ proc print data=date3;
 format exam result worddate12.;
 run;
 data date4;
-input +1 exam mmddyy10. +1 result mmddyy10.;
+input exam ddmmyy8. +1 result ddmmyy8. ;
 duration = result - exam +1;
 cards;
 03-05-92 03-05-93
@@ -187,7 +187,43 @@ cards;
 ;
 run;
 proc print data=date4;
-format exam result worddate17.;
+format exam result worddate12.;
+run;
+data date4;
+input exam ddmmyy8. +1 result ddmmyy8. ;
+duration = result - exam +1;
+cards;
+03-05-92 03-05-93
+13-12-01 12-12-03
+15-01-01 17-03-05
+;
+run;
+proc print data=date4;
+format exam result worddate12.;
+run;
+data date5;
+input exam ddmmyy6. +1 result ddmmyy6. ;
+duration = result - exam +1;
+cards;
+030592 030593
+131201 121203
+150101 170305
+;
+run;
+proc print data=date5;
+format exam result worddate12.;
+run;
+data date6;
+input exam ddmmyy10. +1 result ddmmyy10. ;
+duration = result - exam +1;
+cards;
+03-05-1992 03-05-1993
+13-12-2001 12-12-2003
+15-01-2001 17-03-2005
+;
+run;
+proc print data=date6;
+format exam result worddate12.;
 run;
 /* 연습문제 3 */
 /* (1) 주거 데이터로 데이터 셋 생성 */
