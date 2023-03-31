@@ -246,6 +246,12 @@ proc print;
 run;
 /* 연습문제 4 */
 /* (1) Excel 파일로 만든 후 SAS로 불러오기 */
-
+proc print data=exercise4;
+run;
 /* (2) 읽은 엑셀파일 영구파일로 저장*/
+libname AAA '\\Mac\Home\Desktop\sas-study-main';
 /* (3) 저장된 영구파일 불러오기*/
+data exercise4_3;
+set AAA.exercise4_2;
+proc print;
+run;
