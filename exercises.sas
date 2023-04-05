@@ -292,7 +292,7 @@ set AAA.exercise4_2;
 proc print;
 run;
 /* 연습문제 5 */
-/* (1) a1과 a2를 생성하여 a3 생성*/
+/* (1) a1과 a2를 결합하여 a3 생성*/
 data a1;
 input name $ sex $;
 cards;
@@ -310,6 +310,54 @@ cards;
 서민경 F
 윤지희 F
 ;
-/* set문 */
 data a3; set a1 a2; run;
+proc print;run;
+data b1;
+input name $;
+cards;
+구옥교
+태보린
+윤봉창
+;
+run;
+data b2;
+input year made $ cname $;
+cards;
+1998 대우 레간자
+1996 쌍용 무소
+1992 대우 슈퍼살롱
+;
+data b3;set b1; set b2; run;
+proc print;run;
+/* (2) b1과 b2를 이용하여 b3 생성*/
+data b3;
+merge b1 b2; run;
+proc print;run;
+/* (3) c1과 c2를 이용하여 c3 생성*/
+data c1;
+input name $ year made $ cname $;
+cards;
+태보린 1996 쌍용 무쏘
+장유인 1992 현대 소나타
+구옥교 1998 대우 레간자
+윤봉창 1992 대우 슈퍼살롱
+;
+data c2;
+input name $  color $;
+cards;
+태보린 청색
+구옥교 회색
+윤봉창 백색
+장유인 쥐색
+이마종 홍색
+이제가 백색
+;
+proc sort data = c1;
+by name; run;
+proc sort data = c2;
+by name; run;
+data c3;
+		merge c1 c2;
+		by name;
+		run;
 proc print;run;
