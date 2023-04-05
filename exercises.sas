@@ -291,3 +291,25 @@ data exercise4_3;
 set AAA.exercise4_2;
 proc print;
 run;
+/* 연습문제 5 */
+/* (1) a1과 a2를 생성하여 a3 생성*/
+data a1;
+input name $ sex $;
+cards;
+문홍규 M
+김정민 F
+최준영 M
+강유진 F
+;
+data a2;
+input name $ sex $;
+cards;
+이소윤 F
+윤주호 M
+이형진 M
+서민경 F
+윤지희 F
+;
+/* set문 */
+data a3; set a1 a2; run;
+proc print;run;

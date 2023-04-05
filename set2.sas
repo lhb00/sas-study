@@ -52,11 +52,18 @@ proc sort data=aa1; by name; run; /* name 변수를 기준(알파벳 순서)으로 분류 후 �
 PROC PRINT; RUN;
 proc sort data=aa2; by name; run;
 PROC PRINT; RUN;
-
-/* 결합 후 정렬을 하는 것이 아니고, 정렬을 먼저 한 후 결합하는 것이다. 배열 없이 결합하면 에러 발생!*/
-
+/* 결합 후 정렬을 하는 것이 아니고, 정렬을 먼저 한 후 결합하는 것이다. 정렬 없이 결합하면 에러 발생!*/
 DATA ff;
 SET aa1 aa2;
 by name;
 RUN;
 PROC PRINT; RUN;
+DATA g; SET a1; SET a3; RUN; /* 가로 결합시에는 각각의 set 문장을 사용해주어야 한다.*/
+/* 뒤에 같은 결과가 있다면 뒤에 있는 것이 자리를 차지하게 된다.*/
+PROC PRINT; RUN;
+DATA g1; SET a3; SET a1; RUN; /* 먼저 a3가 호출되니 다른 결과가 출력된다.*/
+PROC PRINT;RUN;
+DATA h; SET a1; SET a4; RUN; /* 즉, 데이터 개수가 적은 것의 결과로 합쳐지게 된다.*/
+PROC PRINT; RUN;
+DATA h1; SET a4; SET a1; RUN;
+PROC PRINT;RUN;
