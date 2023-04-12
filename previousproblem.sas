@@ -2,12 +2,17 @@
 data q1;
 maxi=7; tsum=0; k=1;
 do i=7,26,17,32;
+if i >maxi then maxi=i;
+tsum=tsum+maxi;
+k=k+1;
 end;
+k=k-1;
+msum=tsum/k;
 put msum;
 run;
 /* 2. 명령문 완성하여 데이터 생성 */
 data q2;
-input age 4. .2 name $3. ge $ date date11.@@;
+/* input문*/
 cards;
 66.5 kim f
 29 Jun 17
