@@ -365,10 +365,10 @@ proc print;run;
 /* (1) 1에서 100까지의 합 계산 */
 data exercise6_1;
 sum1=0;
-do i=1 to 100;
-sum1= sum1 +  i;
+do i1=1 to 100;
+sum1= sum1 +  i1;
 end;
-put i sum1;
+put sum1=;
 run;
 /* (2) 1에서 1000까지 5의 배수의 합 계산 */
 data exercise6_2;
@@ -376,7 +376,7 @@ sum2=0;
 do i2=0 to 1000 by 5;
 sum2 = sum2 + i2;
 end;
-put i2 sum2;
+put sum2=;
 run;
 /* (3) 자연수를 1부터 차례로 더하여 10000이 넘기 전까지 합 계산 */
 /* (1) do_while문*/
@@ -386,7 +386,7 @@ do i3_1=1 to 10000 while (sum3_1<=10000);
 sum3_1=sum3_1+i3_1;
 end;
 sum3_1=sum3_1-i3_1+1;
-put i3_1 sum3_1;
+put sum3_1=;
 run;
 /* 2) do_until문*/
 data exercise6_3_2;
@@ -395,7 +395,7 @@ do i3_2=0 until (sum3_2>10000);
 sum3_2=sum3_2+i3_2;
 end;
 sum3_2=sum3_2-i3_2+1;
-put i3_2 sum3_2;
+put sum3_2=;
 run;
 /* (4) 5에서 시작하여 5의 배수를 3개 더한 값 계산(5도 포함)*/
 data exercise6_4;
@@ -405,3 +405,4 @@ sum4 = sum4 + i4 *5;
 end;
 put sum4;
 run;
+/* 연습문제 7 */
