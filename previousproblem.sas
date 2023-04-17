@@ -12,7 +12,8 @@ put msum;
 run;
 /* 2. 명령문 완성하여 데이터 생성 */
 data q2;
-/* input문*/
+options yearcutoff=1910;
+input age name $3. ge $10 #2 date date11.;
 cards;
 66.5 kim f
 29 Jun 17
@@ -21,6 +22,7 @@ cards;
 ;
 run;
 proc print;
+format date worddate12.;
 run;
 /* 3. q3 생성&프린트 */
 data w3;
@@ -43,6 +45,6 @@ set w3(drop=maj);
 ave=(mid+final)/2;
 libname grade '\\Mac\Home\Desktop\sas-study-main';
 data grade.q4;
-set grade.q4(keep=ave);
+set q4(keep=ave);
 proc print data=grade.q4;
 run;
